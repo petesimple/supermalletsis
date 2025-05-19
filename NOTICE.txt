@@ -1,0 +1,3 @@
+Code is licensed under the MIT License.
+
+All custom artwork, music, and character sprites in the assets folder are © Pete Lippincott unless otherwise noted. These assets may not be used, reproduced, or distributed without explicit permission.
