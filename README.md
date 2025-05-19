@@ -1,2 +1,20 @@
-# supermalletsis
-Super Mallet Sisters is a retro-inspired side-scrolling platformer built with Kaboom.js. Run, jump, and smash enemies with mighty mallets as you journey through chaotic levels. Featuring custom sprite characters, breakable blocks, and browser-based gameplay. Play it on GitHub Pages!
+# 🎮 Super Mallet Sisters
+
+Super Mallet Sisters is a retro-style side-scrolling platformer inspired by classic Mario games. Built with Kaboom.js and featuring original sprite artwork, you can jump, smash, and scroll your way through chaos — all in your browser.
+
+Play now: [https://yourusername.github.io/supermalletsis](https://yourusername.github.io/supermalletsis)
+
+---
+
+## 🧰 Tech Stack
+- JavaScript + Kaboom.js
+- HTML5 / Canvas
+- GitHub Pages for hosting
+
+---
+
+## 📜 License
+Code: MIT  
+Art & Audio: © Pete Lippincott (see NOTICE.txt)
+
+Contributions welcome!
