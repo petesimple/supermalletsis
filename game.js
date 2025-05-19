@@ -6,15 +6,13 @@ loadSprite("enemy", "assets/enemy.png");
 loadSound("jump", "assets/jump.wav");
 
 scene("main", () => {
-  layers(["bg", "obj", "ui"], "obj");
-
   const player = add([
     sprite("player"),
     pos(30, 0),
     body(),
   ]);
 
-  const level = addLevel([
+  addLevel([
     "====================",
     "=                  =",
     "=        =         =",
@@ -23,12 +21,12 @@ scene("main", () => {
   ], {
     width: 32,
     height: 32,
-    "=": () => [sprite("ground"), solid()],
-    "@": () => [sprite("enemy"), body()],
+    "=": () => [sprite("ground"), area(), solid()],
+    "@": () => [sprite("enemy"), area(), body()],
   });
 
   keyPress("space", () => {
-    if (player.grounded()) {
+    if (player.isGrounded()) {
       play("jump");
       player.jump(400);
     }
