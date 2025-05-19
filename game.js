@@ -1,10 +1,10 @@
 // Initialize Kaboom
 kaboom({
-  background: [0, 0, 0],
-  global: true,
-  fullscreen: true,
-  scale: 2,
+  width: 640,
+  height: 360,
+  scale: 1,
   debug: true,
+  background: [0, 0, 0],
 });
 
 // Load sprites and sound
