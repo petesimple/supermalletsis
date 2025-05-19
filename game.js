@@ -1,4 +1,4 @@
-// Initialize Kaboom
+// Initialize Kaboom with fixed size and scale
 kaboom({
   width: 640,
   height: 360,
@@ -7,27 +7,24 @@ kaboom({
   background: [0, 0, 0],
 });
 
-// Load sprites and sound
+// Load assets
 loadSprite("player", "assets/player.png");
 loadSprite("ground", "assets/tileset.png");
 loadSprite("enemy", "assets/enemy.png");
 loadSound("jump", "assets/jump.wav");
 
-// Define the main scene
 scene("main", () => {
-  // Define the level map
+  // Level map
   const level = [
     "                                         ",
     "                                         ",
-    "                                         ",
-    "                                         ",
-    "        @                                ",
-    "    ========        =====     ==         ",
+    "         @                               ",
+    "    ========         =====     ==        ",
     "                                         ",
     "=============================   =========",
   ];
 
-  // Add the level to the game
+  // Add level
   addLevel(level, {
     tileWidth: 32,
     tileHeight: 32,
@@ -35,24 +32,29 @@ scene("main", () => {
       "=": () => [
         sprite("ground"),
         area(),
-        body({ isStatic: true }), // Platform
+        body({ isStatic: true }),
       ],
       "@": () => [
         sprite("enemy"),
         area(),
-        body(), // Enemy falls due to gravity
+        body(),
       ],
     },
   });
 
-  // Add the player
+  // Add player
   const player = add([
     sprite("player"),
     pos(40, 0),
     area(),
-    body(), // Affected by gravity
+    body(),
     scale(1.2),
   ]);
+
+  // Camera follows player
+  onUpdate(() => {
+    camPos(player.pos);
+  });
 
   // Controls
   onKeyDown("left", () => player.move(-120, 0));
@@ -64,12 +66,7 @@ scene("main", () => {
     }
   });
 
-  // Camera follows the player
-  onUpdate(() => {
-    camPos(player.pos);
-  });
-
-  // Optional: Reset if player falls off map
+  // Respawn if player falls
   player.onUpdate(() => {
     if (player.pos.y > 600) {
       go("main");
