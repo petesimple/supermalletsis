@@ -6,15 +6,14 @@ kaboom({
   debug: true,
 });
 
-// Load sprites and sounds
+// Load assets
 loadSprite("player", "assets/player.png");
 loadSprite("ground", "assets/tileset.png");
 loadSprite("enemy", "assets/enemy.png");
 loadSound("jump", "assets/jump.wav");
 
 scene("main", () => {
-  // Add level
-  const map = [
+  const level = [
     "                              ",
     "                              ",
     "        @                     ",
@@ -23,16 +22,15 @@ scene("main", () => {
     "=============================",
   ];
 
-  const levelConf = {
-    width: 32,
-    height: 32,
-    "=": () => [sprite("ground"), area(), solid()],
-    "@": () => [sprite("enemy"), area(), body()],
-  };
+  addLevel(level, {
+    tileWidth: 32,
+    tileHeight: 32,
+    tiles: {
+      "=": () => [sprite("ground"), area(), solid()],
+      "@": () => [sprite("enemy"), area(), body()],
+    },
+  });
 
-  addLevel(map, levelConf);
-
-  // Add player
   const player = add([
     sprite("player"),
     pos(40, 0),
@@ -41,13 +39,8 @@ scene("main", () => {
   ]);
 
   // Controls
-  onKeyDown("left", () => {
-    player.move(-120, 0);
-  });
-
-  onKeyDown("right", () => {
-    player.move(120, 0);
-  });
+  onKeyDown("left", () => player.move(-120, 0));
+  onKeyDown("right", () => player.move(120, 0));
 
   onKeyPress("space", () => {
     if (player.isGrounded()) {
@@ -56,7 +49,7 @@ scene("main", () => {
     }
   });
 
-  // Optional: Follow player
+  // Camera follows player
   onUpdate(() => {
     camPos(player.pos);
   });
